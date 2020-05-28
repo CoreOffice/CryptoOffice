@@ -1,0 +1,83 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  xcode-11_0:
+    # The type of runner that the job will run on
+    runs-on: macos-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.0
+        run: ./xcode_test.sh Xcode_11
+
+  xcode-11_1:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.1
+        run: ./xcode_test.sh Xcode_11.1
+
+  xcode-11_2:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.2
+        run: ./xcode_test.sh Xcode_11.2.1
+
+  xcode-11_3:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.3
+        run: ./xcode_test.sh Xcode_11.3.1
+
+  xcode-11_4:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.4
+        run: ./xcode_test.sh Xcode_11.4.1
+
+  linux-5_1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test on Linux with Swift 5.1
+        uses: Didstopia/SwiftAction@v1.0.1
+        with:
+          swift-action: test --enable-test-discovery
+
+  linux-5_2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test on Linux with Swift 5.2
+        uses: Didstopia/SwiftAction@v1.0.2
+        with:
+          swift-action: test --enable-test-discovery
