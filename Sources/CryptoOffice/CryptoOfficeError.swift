@@ -12,15 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@testable import CryptoOffice
-import XCTest
-
-final class CryptoOfficeTests: XCTestCase {
-  func testWorkbook() throws {
-    let url = URL(fileURLWithPath: #file)
-      .deletingLastPathComponent()
-      .appendingPathComponent("TestWorkbook.xlsx")
-
-    _ = try CryptoOfficeFile(path: url.path)
-  }
+enum CryptoOfficeError: Error {
+  case fileIsNotEncrypted(path: String)
 }

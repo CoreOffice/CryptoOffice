@@ -25,6 +25,7 @@ let package = Package(
     // .package(url: /* package url */, from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "1.0.1"),
     .package(url: "https://github.com/CoreOffice/OLEKit.git", .branch("master")),
+    .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMinor(from: "0.9.11")),
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define
@@ -32,6 +33,6 @@ let package = Package(
     // Targets can depend on other targets in this package, and on products in
     // packages which this package depends on.
     .target(name: "CryptoOffice", dependencies: ["OLEKit", "Crypto"]),
-    .testTarget(name: "CryptoOfficeTests", dependencies: ["CryptoOffice"]),
+    .testTarget(name: "CryptoOfficeTests", dependencies: ["CryptoOffice", "ZIPFoundation"]),
   ]
 )
