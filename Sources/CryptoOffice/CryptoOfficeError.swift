@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-enum CryptoOfficeError: Error {
+public enum CryptoOfficeError: Error {
+  case standardEncryptionNotSupported
   case fileIsNotEncrypted(path: String)
+  case extensibleEncryptionNotSupported
+  case unknownEncryptionVersion(major: UInt16, minor: UInt16)
 }

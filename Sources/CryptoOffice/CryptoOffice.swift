@@ -16,12 +16,53 @@ import Crypto
 import Foundation
 import OLEKit
 
+struct AgileInfo: Decodable {
+  struct KeyData: Decodable {
+    let saltValue: Data
+    let hashAlgorihm: String
+  }
+
+  struct Password: Decodable {
+    let spinCount: Int
+    let encryptedKeyValue: Data
+    let saltValue: Data
+    let hashAlgorihm: String
+    let keyBits: Int
+  }
+
+  let keyData: KeyData
+  let password: Password
+}
+
+public enum EncryptionType {
+  case agile
+}
+
 public final class CryptoOfficeFile {
   private let oleFile: OLEFile
+
+  public let encryptionType: EncryptionType
 
   public init(path: String) throws {
     do {
       oleFile = try OLEFile(path)
+      guard let entry = oleFile.root.children.first(where: { $0.name == "EncryptionInfo" })
+      else { throw CryptoOfficeError.fileIsNotEncrypted(path: path) }
+
+      let stream = try oleFile.stream(entry)
+
+      let major: UInt16 = stream.read()
+      let minor: UInt16 = stream.read()
+      switch (major, minor) {
+      case (4, 4):
+        encryptionType = .agile
+      case (2, 2), (3, 2), (4, 2):
+        throw CryptoOfficeError.standardEncryptionNotSupported
+      case (3, 3), (4, 3):
+        throw CryptoOfficeError.extensibleEncryptionNotSupported
+      default:
+        throw CryptoOfficeError.unknownEncryptionVersion(major: major, minor: minor)
+      }
     } catch let OLEError.fileIsNotOLE(path) {
       throw CryptoOfficeError.fileIsNotEncrypted(path: path)
     }

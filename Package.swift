@@ -24,6 +24,7 @@ let package = Package(
     // Dependencies declare other packages that this package depends on.
     // .package(url: /* package url */, from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "1.0.1"),
+    .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", .upToNextMinor(from: "0.11.1")),
     .package(url: "https://github.com/CoreOffice/OLEKit.git", .branch("master")),
     .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMinor(from: "0.9.11")),
   ],
@@ -32,7 +33,7 @@ let package = Package(
     // a module or a test suite.
     // Targets can depend on other targets in this package, and on products in
     // packages which this package depends on.
-    .target(name: "CryptoOffice", dependencies: ["OLEKit", "Crypto"]),
+    .target(name: "CryptoOffice", dependencies: ["Crypto", "OLEKit", "XMLCoder"]),
     .testTarget(name: "CryptoOfficeTests", dependencies: ["CryptoOffice", "ZIPFoundation"]),
   ]
 )

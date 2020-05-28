@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/CoreOffice/OLEKit.git",
         "state": {
           "branch": "master",
-          "revision": "63becde804a4d9e9cf018e5ba7eca620888b72ff",
+          "revision": "c398a516de75f6b974488bae6bbe89a1ca09caf1",
           "version": null
         }
       },
@@ -17,6 +17,15 @@
           "branch": null,
           "revision": "d67ac68d09a95443303e9d6e37b34e7ba101d5f1",
           "version": "1.0.1"
+        }
+      },
+      {
+        "package": "XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "ac411bd6ab342780be0dfe6f679410f791d751d9",
+          "version": "0.11.1"
         }
       },
       {

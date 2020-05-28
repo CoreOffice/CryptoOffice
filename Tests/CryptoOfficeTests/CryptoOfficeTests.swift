@@ -21,6 +21,7 @@ final class CryptoOfficeTests: XCTestCase {
       .deletingLastPathComponent()
       .appendingPathComponent("TestWorkbook.xlsx")
 
-    _ = try CryptoOfficeFile(path: url.path)
+    let file = try CryptoOfficeFile(path: url.path)
+    XCTAssertEqual(file.encryptionType, .agile)
   }
 }
