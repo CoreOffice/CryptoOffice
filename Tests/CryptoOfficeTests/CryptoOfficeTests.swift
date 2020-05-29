@@ -29,7 +29,9 @@ final class CryptoOfficeTests: XCTestCase {
     )
 
     let data = try file.decrypt(password: "pass")
-    let archive = try XCTUnwrap(Archive(data: data, accessMode: .read))
+    guard let archive = Archive(data: data, accessMode: .read)
+    else { return XCTFail("archive could not be created from the decrypted file") }
+
     XCTAssertEqual(Array(archive).count, 10)
   }
 }
