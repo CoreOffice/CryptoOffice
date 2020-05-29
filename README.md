@@ -14,21 +14,21 @@ Using CryptoOffice is easy:
 1. Add `import CryptoOffice` at the top of a relevant file.
 2. Use `CryptoOfficeFile(path: String)` to create a
 new instance with a path to your encrypted file. 
-3. Call `decrypt(password:)` on it to get the decrypted data:
+3. Call `decrypt(password:)` on it to get decrypted data:
 
 ```swift
 import CoreXLSX
 import CryptoOffice
 
-let file = try CryptoOfficeFile(path: "./categories.xlsx")
-let decrypted = file.decrypt(password: "pass")
+let encryptedFile = try CryptoOfficeFile(path: "./categories.xlsx")
+let decryptedData = encryptedFile.decrypt(password: "pass")
 
-guard let xlsxFile = try XLSXFile(data: decrypted) else {
-  fatalError("XLSX file corrupted or does not exist")
+guard let xlsx = try XLSXFile(data: decryptedData) else {
+  fatalError("XLSX file corrupted")
 }
 
-for path in try file.parseWorksheetPaths() {
-  let worksheet = try file.parseWorksheet(at: path)
+for path in try xlsx.parseWorksheetPaths() {
+  let worksheet = try xlsx.parseWorksheet(at: path)
   for row in worksheet.data?.rows ?? [] {
     for c in row.cells {
       print(c)
