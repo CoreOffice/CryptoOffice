@@ -12,59 +12,58 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Crypto
 import Foundation
 import OLEKit
-
-struct AgileInfo: Decodable {
-  struct KeyData: Decodable {
-    let saltValue: Data
-    let hashAlgorihm: String
-  }
-
-  struct Password: Decodable {
-    let spinCount: Int
-    let encryptedKeyValue: Data
-    let saltValue: Data
-    let hashAlgorihm: String
-    let keyBits: Int
-  }
-
-  let keyData: KeyData
-  let password: Password
-}
-
-public enum EncryptionType {
-  case agile
-}
+import XMLCoder
 
 public final class CryptoOfficeFile {
   private let oleFile: OLEFile
 
-  public let encryptionType: EncryptionType
+  let encryptionInfo: AgileInfo
+
+  let packageEntry: DirectoryEntry
 
   public init(path: String) throws {
     do {
       oleFile = try OLEFile(path)
-      guard let entry = oleFile.root.children.first(where: { $0.name == "EncryptionInfo" })
+      guard
+        let infoEntry = oleFile.root.children.first(where: { $0.name == "EncryptionInfo" }),
+        let packageEntry = infoEntry.children.first(where: { $0.name == "EncryptedPackage" })
       else { throw CryptoOfficeError.fileIsNotEncrypted(path: path) }
 
-      let stream = try oleFile.stream(entry)
+      self.packageEntry = packageEntry
+      let stream = try oleFile.stream(infoEntry)
 
       let major: UInt16 = stream.read()
       let minor: UInt16 = stream.read()
       switch (major, minor) {
       case (4, 4):
-        encryptionType = .agile
+        let decoder = XMLDecoder()
+        decoder.shouldProcessNamespaces = true
+
+        stream.seek(toOffset: 8)
+        let info = try decoder.decode(AgileInfo.self, from: stream.readDataToEnd())
+        encryptionInfo = info
+
       case (2, 2), (3, 2), (4, 2):
         throw CryptoOfficeError.standardEncryptionNotSupported
+
       case (3, 3), (4, 3):
         throw CryptoOfficeError.extensibleEncryptionNotSupported
+
       default:
         throw CryptoOfficeError.unknownEncryptionVersion(major: major, minor: minor)
       }
     } catch let OLEError.fileIsNotOLE(path) {
       throw CryptoOfficeError.fileIsNotEncrypted(path: path)
     }
+  }
+
+  public func decrypt(password: String) throws -> Data {
+    let secretKey = try encryptionInfo.secretKey(password: password)
+
+    let stream = try oleFile.stream(packageEntry)
+
+    return try encryptionInfo.decrypt(stream, secretKey: secretKey)
   }
 }

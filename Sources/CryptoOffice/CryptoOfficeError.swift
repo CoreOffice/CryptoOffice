@@ -15,6 +15,9 @@
 public enum CryptoOfficeError: Error {
   case standardEncryptionNotSupported
   case fileIsNotEncrypted(path: String)
+  case cantEncodePassword(encoding: String.Encoding)
   case extensibleEncryptionNotSupported
+  case encryptedKeyNotSpecifiedForAgileEncryption
   case unknownEncryptionVersion(major: UInt16, minor: UInt16)
+  case hashAlgorithmNotSupported(actual: String?, expected: [String])
 }

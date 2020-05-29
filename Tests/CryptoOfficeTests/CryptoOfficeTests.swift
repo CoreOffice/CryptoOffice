@@ -14,6 +14,7 @@
 
 @testable import CryptoOffice
 import XCTest
+import ZIPFoundation
 
 final class CryptoOfficeTests: XCTestCase {
   func testWorkbook() throws {
@@ -22,6 +23,13 @@ final class CryptoOfficeTests: XCTestCase {
       .appendingPathComponent("TestWorkbook.xlsx")
 
     let file = try CryptoOfficeFile(path: url.path)
-    XCTAssertEqual(file.encryptionType, .agile)
+    XCTAssertEqual(
+      file.encryptionInfo.keyEncryptors.keyEncryptor[0].encryptedKey.hashAlgorithm,
+      "SHA512"
+    )
+
+    let data = try file.decrypt(password: "pass")
+    let archive = try XCTUnwrap(Archive(data: data, accessMode: .read))
+    XCTAssertEqual(Array(archive).count, 10)
   }
 }
