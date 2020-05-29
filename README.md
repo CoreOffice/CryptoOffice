@@ -9,9 +9,12 @@ with libraries that allow parsing decrypted data, such as
 
 ## Example
 
-CryptoOffice API is trivial, use `CryptoOfficeFile(path: String)` to create a
-new instance with a path to your encrypted file. Then call `decrypt(password:)`
-on it to get the decrypted data:
+Using CryptoOffice is easy:
+
+1. Add `import CryptoOffice` at the top of a relevant file.
+2. Use `CryptoOfficeFile(path: String)` to create a
+new instance with a path to your encrypted file. 
+3. Call `decrypt(password:)` on it to get the decrypted data:
 
 ```swift
 import CoreXLSX
