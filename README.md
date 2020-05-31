@@ -120,7 +120,7 @@ unacceptable behavior to conduct@coreoffice.org.
 CryptoOffice is licensed under the Apache License, Version 2.0 (the "License");
 you may not use this library except in compliance with the License.
 See the
-[LICENSE](https://github.com/CoreOffice/CryptoOffice/blob/master/LICENSE.md) file
+[LICENSE](https://github.com/CoreOffice/CryptoOffice/blob/master/LICENSE) file
 for more info.
 
 Unless required by applicable law or agreed to in writing, software
