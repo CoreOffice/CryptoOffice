@@ -22,11 +22,8 @@ import CoreXLSX
 import CryptoOffice
 
 let encryptedFile = try CryptoOfficeFile(path: "./categories.xlsx")
-let decryptedData = encryptedFile.decrypt(password: "pass")
-
-guard let xlsx = try XLSXFile(data: decryptedData) else {
-  fatalError("XLSX file corrupted")
-}
+let decryptedData = try encryptedFile.decrypt(password: "pass")
+let xlsx = try XLSXFile(data: decryptedData)
 
 for path in try xlsx.parseWorksheetPaths() {
   let worksheet = try xlsx.parseWorksheet(at: path)
