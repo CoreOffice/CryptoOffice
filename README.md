@@ -13,7 +13,7 @@ Using CryptoOffice is easy:
 
 1. Add `import CryptoOffice` at the top of a relevant file.
 2. Use `CryptoOfficeFile(path: String)` to create a
-new instance with a path to your encrypted file. 
+   new instance with a path to your encrypted file.
 3. Call `decrypt(password:)` on it to get decrypted data:
 
 ```swift
@@ -128,3 +128,11 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+CryptoOffice uses [swift-crypto](https://github.com/apple/swift-crypto/),
+[CryptoSwift](https://github.com/krzyzanowskim/CryptoSwift),
+[XMLCoder](https://github.com/MaxDesiatov/XMLCoder),
+[OLEKit](https://github.com/CoreOffice/OLEKit) and
+[ZIPFoundation](https://github.com/weichsel/ZIPFoundation). The latter is only
+a dependency of CryptoOffice's test suite. Please check the respective projects
+for their actual licensing information.

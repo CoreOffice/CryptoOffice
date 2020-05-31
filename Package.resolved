@@ -14,9 +14,9 @@
         "package": "OLEKit",
         "repositoryURL": "https://github.com/CoreOffice/OLEKit.git",
         "state": {
-          "branch": "master",
-          "revision": "27ffa93dc27e5e857350552adef7ef22ae208548",
-          "version": null
+          "branch": null,
+          "revision": "955997368c17d899b0a603ea02d44b6036143a34",
+          "version": "0.1.0"
         }
       },
       {
