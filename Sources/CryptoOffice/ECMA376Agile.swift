@@ -101,15 +101,19 @@ struct AgileInfo: Decodable {
       segmentIndex.write(i)
 
       let iv = (keyData.saltValue + segmentIndex.data).sha512()[0..<16].bytes
-      let aes = try AES(key: secretKey, blockMode: CBC(iv: iv))
+      let aes = try AES(key: secretKey, blockMode: CBC(iv: iv), padding: .noPadding)
 
       let chunk: Data
+      let decryptedChunk: Data
       if i == totalSegments - 1 {
         chunk = reader.readDataToEnd()
+        decryptedChunk = try Data(aes.decrypt(chunk.bytes)).prefix(Int(lastSegmentSize))
       } else {
         chunk = reader.readData(ofLength: Int(segmentLength))
+        decryptedChunk = try Data(aes.decrypt(chunk.bytes))
+        precondition(decryptedChunk.count == 4096)
       }
-      try result.append(Data(aes.decrypt(chunk.bytes)))
+      result.append(decryptedChunk)
     }
 
     return result
