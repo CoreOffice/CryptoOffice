@@ -14,7 +14,7 @@ Using CryptoOffice is easy:
 1. Add `import CryptoOffice` at the top of a relevant Swift source file.
 2. Use `CryptoOfficeFile(path: String)` to create a new instance with a path to your encrypted file.
 3. Call `decrypt(password: String)` on it to get decrypted data.
-4. Parse the decrypted data with a library appropriate for that format 
+4. Parse the decrypted data with a library appropriate for that format
    ([CoreXLSX](https://github.com/CoreOffice/CoreXLSX) in this example).
 
 ```swift
@@ -62,7 +62,7 @@ easy as adding it to the `dependencies` value of your `Package.swift`.
 ```swift
 dependencies: [
   .package(url: "https://github.com/CoreOffice/CryptoOffice.git",
-           .upToNextMinor(from: "0.1.0"))
+           .upToNextMinor(from: "0.1.1"))
 ]
 ```
 
