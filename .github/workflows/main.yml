@@ -60,6 +60,24 @@ jobs:
       - name: Test with Xcode 11.4
         run: ./xcode_test.sh Xcode_11.4.1
 
+  xcode-11_5:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.5
+        run: ./xcode_test.sh Xcode_11.5
+
+  xcode-11_6:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test with Xcode 11.6
+        run: ./xcode_test.sh Xcode_11.6
+
   linux-5_1:
     runs-on: ubuntu-latest
 
