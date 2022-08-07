@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
         "state": {
           "branch": null,
-          "revision": "39f08ac5269361a50c08ce1e2f41989bfc4b1ec8",
-          "version": "1.3.1"
+          "revision": "039f56c5d7960f277087a0be51f5eb04ed0ec073",
+          "version": "1.5.1"
         }
       },
       {
@@ -30,11 +30,11 @@
       },
       {
         "package": "XMLCoder",
-        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "repositoryURL": "https://github.com/CoreOffice/XMLCoder.git",
         "state": {
           "branch": null,
-          "revision": "ac411bd6ab342780be0dfe6f679410f791d751d9",
-          "version": "0.11.1"
+          "revision": "ca932442d7481700f5434a7b138c47dd42d9902b",
+          "version": "0.14.0"
         }
       },
       {

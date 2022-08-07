@@ -24,8 +24,8 @@ let package = Package(
     // Dependencies declare other packages that this package depends on.
     // .package(url: /* package url */, from: "1.0.0"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "1.0.1"),
-    .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.3.1"),
-    .package(url: "https://github.com/MaxDesiatov/XMLCoder.git", .upToNextMinor(from: "0.11.1")),
+    .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", from: "1.5.1"),
+    .package(url: "https://github.com/CoreOffice/XMLCoder.git", .upToNextMinor(from: "0.14.0")),
     .package(url: "https://github.com/CoreOffice/OLEKit.git", .upToNextMinor(from: "0.1.0")),
     .package(url: "https://github.com/weichsel/ZIPFoundation.git", .upToNextMinor(from: "0.9.11")),
   ],
