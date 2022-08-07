@@ -39,13 +39,13 @@ for path in try xlsx.parseWorksheetPaths() {
 
 **Apple Platforms**
 
-- Xcode 11.0 or later
-- Swift 5.1 or later
+- Xcode 12.4 or later
+- Swift 5.3 or later
 - iOS 13.0 / watchOS 6.0 / tvOS 13.0 / macOS 10.15 or later deployment targets
 
 **Linux**
 
-- Swift 5.1 or later
+- Swift 5.3 or later
 
 ## Installation
 
