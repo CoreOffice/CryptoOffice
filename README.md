@@ -7,6 +7,8 @@ CryptoOffice is a library for decrypting Microsoft Office formats that utilise
 with libraries that allow parsing decrypted data, such as
 [CoreXLSX](https://github.com/CoreOffice/CoreXLSX).
 
+[Join our Discord](https://discord.gg/H6799jh) for any questions and friendly banter.
+
 ## Example
 
 Using CryptoOffice is easy:

@@ -34,7 +34,12 @@ let package = Package(
     // a module or a test suite.
     // Targets can depend on other targets in this package, and on products in
     // packages which this package depends on.
-    .target(name: "CryptoOffice", dependencies: ["Crypto", "CryptoSwift", "OLEKit", "XMLCoder"]),
+    .target(name: "CryptoOffice", dependencies: [
+      .product(name: "Crypto", package: "swift-crypto"),
+      .product(name: "CryptoSwift", package: "CryptoSwift"),
+      .product(name: "OLEKit", package: "OLEKit"),
+      .product(name: "XMLCoder", package: "XMLCoder"),
+    ]),
     .testTarget(name: "CryptoOfficeTests", dependencies: ["CryptoOffice", "ZIPFoundation"]),
   ]
 )
